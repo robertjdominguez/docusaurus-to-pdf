@@ -1,0 +1,60 @@
+[
+  {
+    "text": "Auth",
+    "canonicalLink": "/docs/3.0/auth/overview/",
+    "path": "/docs/3.0/auth/overview/",
+    "subItems": [
+      {
+        "text": "Authentication",
+        "canonicalLink": "/docs/3.0/auth/authentication/",
+        "path": "/docs/3.0/auth/authentication/",
+        "subItems": [
+          {
+            "text": "JWT",
+            "canonicalLink": "/docs/3.0/auth/authentication/jwt/",
+            "path": "/docs/3.0/auth/authentication/jwt/",
+            "subItems": [
+              {
+                "text": "Enabling JWT Authentication",
+                "canonicalLink": "/docs/3.0/auth/authentication/jwt/setup",
+                "path": "/docs/3.0/auth/authentication/jwt/setup"
+              },
+              {
+                "text": "Providers",
+                "canonicalLink": "/docs/3.0/auth/authentication/jwt/providers",
+                "path": "/docs/3.0/auth/authentication/jwt/providers"
+              },
+              {
+                "text": "Set up a Test JWT",
+                "canonicalLink": "/docs/3.0/auth/authentication/jwt/setup-test-jwt",
+                "path": "/docs/3.0/auth/authentication/jwt/setup-test-jwt"
+              }
+            ]
+          },
+          {
+            "text": "Webhook",
+            "canonicalLink": "/docs/3.0/auth/authentication/webhook/",
+            "path": "/docs/3.0/auth/authentication/webhook/",
+            "subItems": [
+              {
+                "text": "Enabling Webhook Authentication",
+                "canonicalLink": "/docs/3.0/auth/authentication/webhook/setup",
+                "path": "/docs/3.0/auth/authentication/webhook/setup"
+              },
+              {
+                "text": "Enabling Admin and Unauthenticated Requests",
+                "canonicalLink": "/docs/3.0/auth/authentication/webhook/special-roles",
+                "path": "/docs/3.0/auth/authentication/webhook/special-roles"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "text": "Authorization",
+        "canonicalLink": "/docs/3.0/auth/authorization/index",
+        "path": "/docs/3.0/auth/authorization/index"
+      }
+    ]
+  }
+]

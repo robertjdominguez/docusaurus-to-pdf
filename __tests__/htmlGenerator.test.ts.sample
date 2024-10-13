@@ -1,0 +1,14 @@
+import { someAsyncFunction } from "./path/to/your/module";
+
+describe("someAsyncFunction", () => {
+  it("should do something cool", async () => {
+    const input = "some input";
+    const expectedOutput = "expected output";
+
+    // Act
+    const result = await someAsyncFunction(input);
+
+    // Assert
+    expect(result).toBe(expectedOutput);
+  });
+});
