@@ -1,6 +1,6 @@
 {
   "name": "docusaurus-to-pdf",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "main": "dist/bin/generate-pdf.js",
   "bin": {
     "docusaurus-to-pdf": "dist/bin/generate-pdf.js"
@@ -25,7 +25,11 @@
   ],
   "author": "Rob Dominguez",
   "license": "ISC",
-  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/robertjdominguez/docusaurus-to-pdf.git"
+  },
+  "description": "A CLI tool for scraping Docusaurus sites into PDFs.",
   "devDependencies": {
     "@types/cli-progress": "^3.11.6",
     "@types/jest": "^29.5.13",
