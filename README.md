@@ -20,6 +20,7 @@ By default, the tool looks for a configuration file named `scraper.config.json`.
 - `--baseUrl <url>`: Base URL of the site to scrape
 - `--entryPoint <url>`: Entry point for scraping (starting URL)
 - `--directories <dirs...>`: Specific directories to include in the scraping process (optional)
+- `--customStyles <styles...>`: Add custom styles as a string to override defaults (optional)
 - `--output <path>`: Output path for the generated PDF (default: `./output/docs.pdf`)
 
 ## Examples
@@ -28,13 +29,14 @@ Below, you'll find some example configurations that can be placed in a `scraper.
 
 ### Example 1: Scraping specific directories
 
+Only paths which include 'auth' and 'support' will be included in the output:
+
 CLI equivalent: `npx docusaurus-to-pdf --baseUrl https://hasura.io --entryPoint https://hasura.io/docs/3.0 --directories auth support`
 
 ```json
 {
   "baseUrl": "https://hasura.io",
   "entryPoint": "https://hasura.io/docs/3.0",
-  // Only paths which include 'auth' and 'support' will be included in the output
   "requiredDirs": ["auth", "support"]
 }
 ```
@@ -59,6 +61,21 @@ CLI equivalent: `npx docusaurus-to-pdf --baseUrl https://docusaurus.io --entryPo
 {
   "baseUrl": "https://docusaurus.io",
   "entryPoint": "https://docusaurus.io/docs"
+}
+```
+
+### Example 4: Scraping with custom styles
+
+This will add override the existing styles of tables to have a max-width of `3500px`, which is typical for an A4 sheet
+of paper.
+
+CLI equivalent: `npx docusaurus-to-pdf --baseUrl https://hasura.io --entryPoint https://hasura.io/docs/3.0 --directories --customStyles "table { max-width: 3500px !important }"`
+
+```json
+{
+  "baseUrl": "https://hasura.io",
+  "entryPoint": "https://hasura.io/docs/3.0",
+  "customStyles": "table { max-width: 3500px !important }"
 }
 ```
 

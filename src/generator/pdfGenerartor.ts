@@ -14,6 +14,7 @@ export async function generateAllPdfs(
   items: SidebarObject[],
   baseUrl: string,
   progressBar: ProgressBar,
+  customStyles?: string,
 ): Promise<Buffer[]> {
   const aggregatePdfs: Buffer[] = [];
 
@@ -26,6 +27,7 @@ export async function generateAllPdfs(
       html: pageContent,
       cssLinks: pageHtml.cssLinks,
       baseUrl,
+      customStyles,
     });
 
     aggregatePdfs.push(pdf);
@@ -39,6 +41,7 @@ export async function generateAllPdfs(
         item.subItems,
         baseUrl,
         progressBar,
+        customStyles,
       );
       aggregatePdfs.push(...subItemPdfs);
     }
@@ -76,12 +79,18 @@ function wrapHtmlIfNeeded(html: string): string {
 async function injectCssLinks(
   html: string,
   cssLinks: string[],
+  customStyles?: string,
 ): Promise<string> {
   for (const link of cssLinks) {
     try {
       const cssResponse = await axios.get(link);
       const styleTag = `<style>${cssResponse.data}</style>`;
-      html = html.replace("</head>", `${styleTag}</head>`);
+      // TODO: If a custom style is passed, we'll inject it here
+      const customStyleWrapper = `<style>${customStyles}</style>`;
+      html = html.replace(
+        "</head>",
+        `${styleTag} ${customStyleWrapper}</head>`,
+      );
     } catch (err) {
       console.error(`Failed to fetch CSS from ${link}`, err);
     }
@@ -116,17 +125,19 @@ export async function generatePDF({
   html,
   cssLinks,
   baseUrl,
+  customStyles,
 }: {
   html: string;
   cssLinks: string[];
   baseUrl: string;
+  customStyles?: string;
 }): Promise<Buffer> {
   const { browser, page } = await launchBrowserAndPage();
 
   try {
     html = resolveImageUrls(html, baseUrl);
     html = wrapHtmlIfNeeded(html);
-    html = await injectCssLinks(html, cssLinks);
+    html = await injectCssLinks(html, cssLinks, customStyles);
 
     const pdfBuffer = await generatePdfBuffer(page, html);
     return pdfBuffer;

@@ -1,6 +1,6 @@
 {
   "name": "docusaurus-to-pdf",
-  "version": "1.0.2",
+  "version": "1.1.2",
   "main": "dist/bin/generate-pdf.js",
   "bin": {
     "docusaurus-to-pdf": "dist/bin/generate-pdf.js"

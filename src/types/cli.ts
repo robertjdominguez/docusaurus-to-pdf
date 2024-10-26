@@ -22,6 +22,7 @@ export type CliFlags = {
   output: string;
   baseUrl: string;
   entryPoint: string;
+  customStyles: string;
   outputDir: string;
 };
 
@@ -36,5 +37,6 @@ export type ConfigOptions = {
   requiredDirs: string[];
   outputDir: string;
   baseUrl: string;
+  customStyles: string;
   entryPoint: string;
 };

@@ -14,11 +14,12 @@ export function processFlags(options: CliFlags): ConfigOptions {
 
   // Merge CLI options with config file options, CLI flags take precedence
   const config: ConfigOptions = {
-    requiredDirs: options.directories || configFileOptions?.requiredDirs || [],
-    outputDir:
-      options.output || configFileOptions?.outputDir || "./output/docs.pdf",
     baseUrl: options.baseUrl || configFileOptions?.baseUrl || "",
     entryPoint: options.entryPoint || configFileOptions?.entryPoint || "",
+    requiredDirs: options.directories || configFileOptions?.requiredDirs || [],
+    customStyles: options.customStyles || configFileOptions?.customStyles || "",
+    outputDir:
+      options.output || configFileOptions?.outputDir || "./output/docs.pdf",
   };
 
   if (!config.baseUrl) {

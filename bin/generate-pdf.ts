@@ -20,6 +20,10 @@ program
   .option("--baseUrl <url>", "Base URL of the site")
   .option("--entryPoint <url>", "Entry point for scraping")
   .option("--directories <dirs...>", "Specific directories to include")
+  .option(
+    "--customStyles <styles...>",
+    "Custom styles to override existing CSS",
+  )
   .option("--output <path>", "Output PDF path");
 
 program.parse(process.argv);
@@ -42,7 +46,12 @@ async function run(options: CliFlags) {
   progressBar.start(totalPdfItems);
 
   // Generate all PDFs
-  const allPdfs = await generateAllPdfs(result, config.baseUrl, progressBar);
+  const allPdfs = await generateAllPdfs(
+    result,
+    config.baseUrl,
+    progressBar,
+    config.customStyles,
+  );
 
   const mergedPdf = await mergePDFs(allPdfs);
   savePDF(mergedPdf, config.outputDir);
