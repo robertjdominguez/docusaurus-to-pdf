@@ -5,6 +5,7 @@ import {
   getThemeDocMarkdown,
   resolveImageUrls,
   countPdfItems,
+  forceImagesLoading,
 } from "../../src/generator/utils";
 
 // Mock Puppeteer
@@ -107,6 +108,24 @@ describe("Utils", () => {
 
       // Assert that absolute URLs are not modified
       expect(result).toContain('src="https://example.com/images/absolute.jpg"');
+    });
+  });
+
+  describe("forceImagesLoading", () => {
+    test("should remove loading attribute from img elements", () => {
+      const sampleHtml = `
+        <html>
+          <body>
+            <img loading='lazy' src="/images/example.jpg" />
+            <img loading='lazy' src="https://example.com/images/absolute.jpg" />
+          </body>
+        </html>
+      `;
+
+      const result = forceImagesLoading(sampleHtml);
+
+      // Assert that relative URLs are converted to absolute
+      expect(result).not.toContain('loading="lazy"');
     });
   });
 
