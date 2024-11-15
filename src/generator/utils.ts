@@ -53,6 +53,22 @@ export function resolveImageUrls(html: string, baseUrl: string): string {
 }
 
 /**
+ * Disable lazy loading on images.
+ */
+
+export function forceImagesLoading(html: string): string {
+  const $ = cheerio.load(html);
+  $("img").each((_, img) => {
+    // Remove loading attribute for using the default value (eager)
+    // Loads the image immediately, regardless of whether or not the image is currently within the visible viewport.
+    $(img).removeAttr('loading');
+  })
+
+  return $.html()
+
+}
+
+/**
  * Counts PDFs for the progress bar.
  */
 export function countPdfItems(items: any[]): number {

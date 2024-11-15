@@ -20,6 +20,7 @@ export function processFlags(options: CliFlags): ConfigOptions {
     customStyles: options.customStyles || configFileOptions?.customStyles || "",
     outputDir:
       options.output || configFileOptions?.outputDir || "./output/docs.pdf",
+    forceImages: options.forceImages || configFileOptions?.forceImages || false,
   };
 
   if (!config.baseUrl) {

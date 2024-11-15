@@ -24,7 +24,8 @@ program
     "--customStyles <styles...>",
     "Custom styles to override existing CSS",
   )
-  .option("--output <path>", "Output PDF path");
+  .option("--output <path>", "Output PDF path")
+  .option("--forceImages", "Disable lazy loading for images");
 
 program.parse(process.argv);
 
@@ -51,6 +52,7 @@ async function run(options: CliFlags) {
     config.baseUrl,
     progressBar,
     config.customStyles,
+    config.forceImages
   );
 
   const mergedPdf = await mergePDFs(allPdfs);

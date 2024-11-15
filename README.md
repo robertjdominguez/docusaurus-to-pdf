@@ -22,6 +22,7 @@ By default, the tool looks for a configuration file named `scraper.config.json`.
 - `--directories <dirs...>`: Specific directories to include in the scraping process (optional)
 - `--customStyles <styles...>`: Add custom styles as a string to override defaults (optional)
 - `--output <path>`: Output path for the generated PDF (default: `./output/docs.pdf`)
+- `--forceImages`: Disable lazy loading for images (default: `false`)
 
 ## Examples
 
@@ -76,6 +77,18 @@ CLI equivalent: `npx docusaurus-to-pdf --baseUrl https://hasura.io --entryPoint 
   "baseUrl": "https://hasura.io",
   "entryPoint": "https://hasura.io/docs/3.0",
   "customStyles": "table { max-width: 3500px !important }"
+}
+```
+
+### Example 5: Scraping without lazy loading on images
+
+CLI equivalent: `npx docusaurus-to-pdf --baseUrl https://docusaurus.io --entryPoint https://docusaurus.io/docs --forceImages`
+
+```json
+{
+  "baseUrl": "https://docusaurus.io",
+  "entryPoint": "https://docusaurus.io/docs",
+  "forceImages": true
 }
 ```
 
