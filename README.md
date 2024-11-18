@@ -1,6 +1,7 @@
 # docusaurus-to-pdf
 
-`docusaurus-to-pdf` is a CLI tool that generates a PDF from a Docusaurus-based documentation website. The tool allows customization of the scraping process via a configuration file or CLI options.
+`docusaurus-to-pdf` is a CLI tool that generates a PDF from a Docusaurus-based documentation website. The tool allows
+customization of the scraping process via a configuration file or CLI options.
 
 ## Installation
 
@@ -12,17 +13,20 @@ npx docusaurus-to-pdf
 
 ## Usage
 
-By default, the tool looks for a configuration file named `scraper.config.json`. However, you can override this by providing specific options through the CLI.
+By default, the tool looks for a configuration file named `scraper.config.json`. However, you can override this by
+providing specific options through the CLI.
 
 ### CLI Options
 
-- `--all`: Generate PDF for all directories (default: `true`)
-- `--baseUrl <url>`: Base URL of the site to scrape
-- `--entryPoint <url>`: Entry point for scraping (starting URL)
-- `--directories <dirs...>`: Specific directories to include in the scraping process (optional)
-- `--customStyles <styles...>`: Add custom styles as a string to override defaults (optional)
-- `--output <path>`: Output path for the generated PDF (default: `./output/docs.pdf`)
-- `--forceImages`: Disable lazy loading for images (default: `false`)
+| Option                       | Description                                                        | Default             |
+| ---------------------------- | ------------------------------------------------------------------ | ------------------- |
+| `--all`                      | Generate PDF for all directories                                   | `true`              |
+| `--baseUrl <url>`            | Base URL of the site to scrape                                     |                     |
+| `--entryPoint <url>`         | Entry point for scraping (starting URL)                            |                     |
+| `--directories <dirs...>`    | Specific directories to include in the scraping process (optional) |                     |
+| `--customStyles <styles...>` | Add custom styles as a string to override defaults (optional)      |                     |
+| `--output <path>`            | Output path for the generated PDF                                  | `./output/docs.pdf` |
+| `--forceImages`              | Disable lazy loading for images                                    | `false`             |
 
 ## Examples
 
@@ -32,7 +36,8 @@ Below, you'll find some example configurations that can be placed in a `scraper.
 
 Only paths which include 'auth' and 'support' will be included in the output:
 
-CLI equivalent: `npx docusaurus-to-pdf --baseUrl https://hasura.io --entryPoint https://hasura.io/docs/3.0 --directories auth support`
+CLI equivalent:
+`npx docusaurus-to-pdf --baseUrl https://hasura.io --entryPoint https://hasura.io/docs/3.0 --directories auth support`
 
 ```json
 {
@@ -44,7 +49,8 @@ CLI equivalent: `npx docusaurus-to-pdf --baseUrl https://hasura.io --entryPoint 
 
 ### Example 2: Scraping all directories
 
-CLI equivalent: `npx docusaurus-to-pdf --baseUrl https://hasura.io --entryPoint https://hasura.io/docs/3.0 --output ./output/all-docs.pdf`
+CLI equivalent:
+`npx docusaurus-to-pdf --baseUrl https://hasura.io --entryPoint https://hasura.io/docs/3.0 --output ./output/all-docs.pdf`
 
 ```json
 {
@@ -70,7 +76,8 @@ CLI equivalent: `npx docusaurus-to-pdf --baseUrl https://docusaurus.io --entryPo
 This will add override the existing styles of tables to have a max-width of `3500px`, which is typical for an A4 sheet
 of paper.
 
-CLI equivalent: `npx docusaurus-to-pdf --baseUrl https://hasura.io --entryPoint https://hasura.io/docs/3.0 --directories --customStyles "table { max-width: 3500px !important }"`
+CLI equivalent:
+`npx docusaurus-to-pdf --baseUrl https://hasura.io --entryPoint https://hasura.io/docs/3.0 --customStyles 'table { max-width: 3500px !important }'`
 
 ```json
 {
@@ -82,7 +89,8 @@ CLI equivalent: `npx docusaurus-to-pdf --baseUrl https://hasura.io --entryPoint 
 
 ### Example 5: Scraping without lazy loading on images
 
-CLI equivalent: `npx docusaurus-to-pdf --baseUrl https://docusaurus.io --entryPoint https://docusaurus.io/docs --forceImages`
+CLI equivalent:
+`npx docusaurus-to-pdf --baseUrl https://docusaurus.io --entryPoint https://docusaurus.io/docs --forceImages`
 
 ```json
 {
