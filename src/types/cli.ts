@@ -16,6 +16,7 @@ export interface ProgressBar {
  * - `output`: The file path where the final PDF will be saved.
  * - `baseUrl`: The base URL of the documentation site being scraped.
  * - `entryPoint`: The starting URL for scraping the docs.
+ * - `forceImages`: If true it will disable lazy loading for images.
  */
 export type CliFlags = {
   directories: string[];
@@ -24,6 +25,7 @@ export type CliFlags = {
   entryPoint: string;
   customStyles: string;
   outputDir: string;
+  forceImages?: boolean;
 };
 
 /*
@@ -32,6 +34,7 @@ export type CliFlags = {
  * - `outputDir`: Path to the output file (same as `output`).
  * - `baseUrl`: The base URL of the site to scrape.
  * - `entryPoint`: Starting point for the scraper (could default to baseUrl + /docs/3.0).
+ * - `forceImages`: If true it will disable lazy loading for images.
  */
 export type ConfigOptions = {
   requiredDirs: string[];
@@ -39,4 +42,5 @@ export type ConfigOptions = {
   baseUrl: string;
   customStyles: string;
   entryPoint: string;
+  forceImages?: boolean;
 };

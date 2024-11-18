@@ -3,7 +3,12 @@ import path from "path";
 import puppeteer, { Page } from "puppeteer";
 import { PDFDocument } from "pdf-lib";
 import { SidebarObject } from "../types/sidebar";
-import { getHtml, getThemeDocMarkdown, resolveImageUrls } from "./utils";
+import {
+  getHtml,
+  getThemeDocMarkdown,
+  resolveImageUrls,
+  forceImagesLoading,
+} from "./utils";
 import axios from "axios";
 import { ProgressBar } from "../types/cli";
 
@@ -15,6 +20,7 @@ export async function generateAllPdfs(
   baseUrl: string,
   progressBar: ProgressBar,
   customStyles?: string,
+  forceImages?: boolean
 ): Promise<Buffer[]> {
   const aggregatePdfs: Buffer[] = [];
 
@@ -28,6 +34,7 @@ export async function generateAllPdfs(
       cssLinks: pageHtml.cssLinks,
       baseUrl,
       customStyles,
+      forceImages
     });
 
     aggregatePdfs.push(pdf);
@@ -42,6 +49,7 @@ export async function generateAllPdfs(
         baseUrl,
         progressBar,
         customStyles,
+        forceImages
       );
       aggregatePdfs.push(...subItemPdfs);
     }
@@ -126,11 +134,13 @@ export async function generatePDF({
   cssLinks,
   baseUrl,
   customStyles,
+  forceImages
 }: {
   html: string;
   cssLinks: string[];
   baseUrl: string;
   customStyles?: string;
+  forceImages?: boolean;
 }): Promise<Buffer> {
   const { browser, page } = await launchBrowserAndPage();
 
@@ -138,6 +148,10 @@ export async function generatePDF({
     html = resolveImageUrls(html, baseUrl);
     html = wrapHtmlIfNeeded(html);
     html = await injectCssLinks(html, cssLinks, customStyles);
+
+    if(forceImages){
+      html = forceImagesLoading(html);
+    }
 
     const pdfBuffer = await generatePdfBuffer(page, html);
     return pdfBuffer;
